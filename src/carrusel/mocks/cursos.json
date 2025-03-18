@@ -1,0 +1,18 @@
+{
+     "cursos":[
+       {
+        "id":1,
+        "img":"https://i.postimg.cc/VNGzb911/481502097-18033607103549728-2227859422258091457-n.png",
+        "description":"Lo mas nuevo en cursos",
+        "title":"Ciclo de formacion en el oficio ceramico"
+       },
+       {
+        "id":2,
+        "img":"https://i.postimg.cc/0jdNVPQx/480983835-18033080942549728-6275221129032194906-n.png",
+        "description":"Lo mas nuevo en cursos",
+        "title":"Taller de ceramica bicho feo niños y adolescentes"
+       }
+]
+
+}
+
