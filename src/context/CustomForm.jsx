@@ -1,5 +1,6 @@
 import { createContext, useState, useRef } from "react";
 
+
 export const CustomFormContext = createContext()
 
 export function CustomFormProvider({children}) {
@@ -12,6 +13,19 @@ export function CustomFormProvider({children}) {
         const [hoursEntry,setHoursEntry] = useState()
         const [msj,setMsj] = useState({ err:false,msj:null})
         const [msjactive,setMsjActive] = useState({id:null,active:false})
+  
+        const [token,settoken] = useState(()=> {
+            let token = JSON.parse(localStorage.getItem('user'))
+            console.log(token)
+            if(token) return token
+            return null
+        })
+        const [log,setlog] = useState(()=> {
+            if(token) return true
+            return false
+        })
+
+
         const input = useRef(null)
         
       return(
@@ -31,6 +45,10 @@ export function CustomFormProvider({children}) {
             msj,
             setMsj,
             msjactive,
+            token,
+            log,
+            settoken,
+            setlog,
             setMsjActive,
             input
         }}>

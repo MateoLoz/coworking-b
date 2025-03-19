@@ -2,11 +2,12 @@ import { Check } from "./Check"
 
 export function validateMembresia  (membresia) {
 
-    if(membresia == 'membresia') throw new Error('membresia invalida!')
-    if(membresia == 'bicho-feo') return 27
-    if(membresia == 'basic') return 12
-    if(membresia == 'gold') return 16
-    if(membresia == 'plus') return 10
+    if(membresia == 'Taller niños y adolescentes') return
+    if(membresia == 'Taller Libre') return 
+    if(membresia == 'Espacio de colCoworking') return 
+    if(membresia == 'Taller de alfareria') return 
+    if(membresia == 'Ciclo formacion') return 
+    if(membresia == 'Bono diario') return 
     else throw new Error ('membresia invalida !')
 }
 
@@ -16,7 +17,7 @@ export class Validator {
         if(nombre.length < 8) return 'El nombre es demasiado corto!'
         if(!Check.checkMayCaracters(nombre)) return 'El nombre debe contener al menos 1 caracter Mayuscula'
         if(!Check.checkNumbers(nombre)) return 'El nombre debe contener al menos 1 numero'
-        if(!Check.checkEspecialCaracteres(nombre)) return 'El nombre debe contener 1 caracter especial'
+        // if(!Check.checkEspecialCaracteres(nombre)) return 'El nombre debe contener 1 caracter especial'
         else return true
     }
     static async ValidatePassword (password) {
@@ -28,10 +29,11 @@ export class Validator {
     }
     static validatehours (membresia) {
         if(membresia == 'membresia') return ('membresia invalida!')
-        if(membresia == 'bicho-feo') return 27
-        if(membresia == 'basic') return 12
-        if(membresia == 'gold') return 16
-        if(membresia == 'plus') return 10
+        if(membresia == 'Taller niños y adolescentes') return 
+        if(membresia == 'Espacio de colCoworking') return 
+        if(membresia == 'Taller de alfareria') return 
+        if(membresia == 'Ciclo formacion') return 
+        if(membresia == 'Bono diario') return 
         else  return ('membresia invalida !')
     }
     static validatemembresia (membresia) {

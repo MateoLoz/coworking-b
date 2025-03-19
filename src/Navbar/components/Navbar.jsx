@@ -1,8 +1,11 @@
 import '../styles/navbar.css'
 import { useWidth } from '../../hooks/useWidth'
 import { useMenu } from '../../hooks/useMenu.js'
+import { UseCustomForm } from '../../hooks/useCustomForm.js'
+
 
 export default function Navbar () {
+   
     return <>
     <aside className="Navbar">
     <NavbarContent/>
@@ -27,16 +30,23 @@ export const NavbarContent = () => {
 }
 
 export const NavbarList = () => {
-
+    const {log,token} = UseCustomForm()
 const {width} = useWidth()
 
     return(
         <div className='items-list'>
-        <ul className='ul-items'>
+        <nav className='ul-items'>
             {width > 500 ? 
             <div className='items-list'>
-            <li className='li-items'><h4>Registrase</h4></li>
-            <li className='li-items'><h4>Iniciar Sesion</h4></li>
+                {
+                    log == true ? <>
+                      <li className='li-items'> <h4>{token.user[0].nombre}</h4> </li>
+                    </>
+                    :   <>
+                       <li className='li-items'>  <h4>Registrase</h4> </li>
+                       <li className='li-items'>  <h4>Inicio Sesion</h4> </li>
+                    </>
+                }
             {width < 900 
             ? null :  <>
                 <li  className='li-items'><h4>Sobre Nosotros</h4></li>
@@ -46,7 +56,7 @@ const {width} = useWidth()
             </div>
             : null}
            
-        </ul>
+        </nav>
     </div>
     )
 }
@@ -88,14 +98,26 @@ export const HamburgerMenu = () => {
 
 
 export const ListItems = () => {
+    const {token,log} = UseCustomForm()
+
     return(
         <ul className='ul-items-hamburger'>
+            {
+                log == true ?
+                <>
+                  <li className='li-items'>
+                <h4 >{token.user[0].nombre}</h4>
+                </li>
+                </>
+                : <>
             <li className='li-items'>
                 <h4 >Registrase</h4>
                 </li>
             <li className='li-items'>
                 <h4 >Iniciar Sesion</h4>
                 </li>
+                </>
+            }
             <li className='li-items'>
                 <h4 >Sobre nosotros</h4>
                 </li>
@@ -113,4 +135,12 @@ export const Modal = ({Children}) => {
           {Children}
         </div>
     )
+}
+
+export const NavbarModalLog = () => {
+return(
+    <div>
+    
+    </div>
+)
 }

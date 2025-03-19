@@ -2,9 +2,12 @@ import { useContext } from "react"
 import { Validator } from "../validations/Validate"
 import { validateMembresia } from "../validations/Validate"
 import { CustomFormContext } from "../context/CustomForm"
+import { routesapi } from "../consts/routesapi"
+import { httpcontroller } from "../helpers/httpcontroller"
+
 export function UseCustomForm () {
 
-   const {nombre,setnombre,password,setPassword,rol,membresia,setmembresia,hoursleft,setHoursLeft,hoursEntry,setHoursEntry,msj,setMsj,msjactive,setMsjActive,input} = useContext(CustomFormContext)
+   const {nombre,setnombre,password,setPassword,rol,membresia,setmembresia,hoursleft,setHoursLeft,hoursEntry,setHoursEntry,msj,setMsj,msjactive,setMsjActive,input,token,log,settoken,setlog} = useContext(CustomFormContext)
 
     const handleRef = (id) => {
         input.current = document.getElementById(id)
@@ -80,10 +83,32 @@ const fontstyle = {
     fontWeight:'500'
 }
 
+const handleinicio = async (e) => {
+e.preventDefault()
+if(nombre == undefined)return
+if(password == undefined)return
+try{
+let res = await httpcontroller.postdata(routesapi.login,nombre,password)
+
+localStorage.setItem('user',JSON.stringify(res))
+await settoken(res)
+await setlog(!log)
+
+ if(log == true && token != null){
+ window.location.href='/'
+ }
+
+
+}catch(err){
+    throw new Error(err.message)
+}
+
+}
 
 
 
-return {handlename,handlemembership,handlepassword,handlesubmit,msj,msjactive,style,fontstyle}
+
+return {handlename,handlemembership,handlepassword,handlesubmit,handleinicio,msj,msjactive,style,fontstyle,token,log}
 
 
 }
